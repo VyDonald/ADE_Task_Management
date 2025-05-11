@@ -13,7 +13,7 @@ class Equipe extends Model
 
     public function utilisateurs()
     {
-        return $this->belongsToMany(Utilisateur::class);
+        return $this->belongsToMany(Utilisateur::class, 'equipe_utilisateur', 'equipe_id', 'utilisateur_id')->withTimestamps();
     }
 
     public function projets()

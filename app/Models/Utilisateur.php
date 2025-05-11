@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Utilisateur extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $fillable = [
         'email',
@@ -21,9 +23,13 @@ class Utilisateur extends Model
         'competences' => 'array',
     ];
 
+    protected $hidden = [
+        'mot_de_passe',
+    ];
+
     public function equipes()
     {
-        return $this->belongsToMany(Equipe::class);
+        return $this->belongsToMany(Equipe::class, 'equipe_utilisateur', 'utilisateur_id', 'equipe_id')->withTimestamps();
     }
 
     public function taches()

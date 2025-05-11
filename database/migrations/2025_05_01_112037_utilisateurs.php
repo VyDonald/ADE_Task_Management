@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('mot_de_passe');
             $table->string('nom');
-            $table->string('role');
+            $table->enum('role', ['admin', 'leader', 'membre']);
             $table->json('competences')->nullable();
             $table->timestamps();
         });

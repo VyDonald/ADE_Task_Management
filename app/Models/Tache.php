@@ -13,13 +13,16 @@ class Tache extends Model
         'description',
         'priorite',
         'statut',
+        'date_debut',
         'date_echeance',
         'competences_requises',
         'projet_id',
+        'utilisateur_id',
     ];
 
     protected $casts = [
-        'competences_requises' => 'array',
+       'competences_requises' => 'array',
+        'date_debut' => 'date',
         'date_echeance' => 'date',
     ];
 
@@ -28,8 +31,8 @@ class Tache extends Model
         return $this->belongsTo(Projet::class);
     }
 
-    public function utilisateurs()
+    public function utilisateur()
     {
-        return $this->belongsToMany(Utilisateur::class);
+        return $this->belongsTo(Utilisateur::class);
     }
 }

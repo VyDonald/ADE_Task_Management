@@ -17,9 +17,11 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('priorite');
             $table->string('statut');
-            $table->date('date_echeance')->nullable();
+            $table->date('date_debut');
+            $table->date('date_echeance');
             $table->json('competences_requises')->nullable();
             $table->foreignId('projet_id')->constrained()->onDelete('cascade');
+            $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
             $table->timestamps();
         });
     }
